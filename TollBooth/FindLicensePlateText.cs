@@ -117,7 +117,8 @@ namespace TollBooth
             if (result.Regions == null || result.Regions.Length == 0) return string.Empty;
 
             const string states = "ALABAMA,ALASKA,ARIZONA,ARKANSAS,CALIFORNIA,COLORADO,CONNECTICUT,DELAWARE,FLORIDA,GEORGIA,HAWAII,IDAHO,ILLINOIS,INDIANA,IOWA,KANSAS,KENTUCKY,LOUISIANA,MAINE,MARYLAND,MASSACHUSETTS,MICHIGAN,MINNESOTA,MISSISSIPPI,MISSOURI,MONTANA,NEBRASKA,NEVADA,NEW HAMPSHIRE,NEW JERSEY,NEW MEXICO,NEW YORK,NORTH CAROLINA,NORTH DAKOTA,OHIO,OKLAHOMA,OREGON,PENNSYLVANIA,RHODE ISLAND,SOUTH CAROLINA,SOUTH DAKOTA,TENNESSEE,TEXAS,UTAH,VERMONT,VIRGINIA,WASHINGTON,WEST VIRGINIA,WISCONSIN,WYOMING";
-            const string states_mx = "";
+            const string states_mx = "QUERETARO,ESTADO DE MEXICO";
+            const string other_date = "TRASERA,DELANTERA,MÉXICO,TRASNSPORTE,PRIVADO,PUBLICO,AUTOMOVIL,CAMION";
             string[] chars = { ",", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "_", "(", ")", ":", "|", "[", "]" };
             var stateList = states.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -126,6 +127,8 @@ namespace TollBooth
             {
                 // Exclude the state name.
                 if (stateList.Contains(line.Words[0].Text.ToUpper())) continue;
+                if (states_mx.Contains(line.Words[0].Text.ToUpper())) continue;
+                if(other_date.Contains(line.Words[0].Text.ToUpper())) continue;
                 foreach (var word in line.Words)
                 {
                     if (!string.IsNullOrWhiteSpace(word.Text))
