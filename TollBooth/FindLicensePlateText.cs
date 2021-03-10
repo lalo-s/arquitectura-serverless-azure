@@ -128,11 +128,12 @@ namespace TollBooth
                 // Exclude the state name.
                 if (stateList.Contains(line.Words[0].Text.ToUpper())) continue;
                 if (states_mx.Contains(line.Words[0].Text.ToUpper())) continue;
-                if(other_date.Contains(line.Words[0].Text.ToUpper())) continue;
+                if (other_date.Contains(line.Words[0].Text.ToUpper())) continue;
                 foreach (var word in line.Words)
                 {
                     if (!string.IsNullOrWhiteSpace(word.Text))
-                        text += (RemoveSpecialCharacters(word.Text)) + " "; // Spaces are valid in a license plate.
+                        //text += (RemoveSpecialCharacters(word.Text)) + " "; // Spaces are valid in a license plate.
+                        text += (RemoveSpecialCharacters(word.Text)); //delete spaces
                 }
             }
 
