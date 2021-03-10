@@ -123,7 +123,8 @@ namespace TollBooth
             var stateList = states.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             // We are only interested in the first region found, and only the first two lines within the region.
-            foreach (var line in result.Regions[0].Lines.Take(2))
+            //changed to one line
+            foreach (var line in result.Regions[0].Lines.Take(1))
             {
                 // Exclude the state name.
                 if (stateList.Contains(line.Words[0].Text.ToUpper())) continue;
