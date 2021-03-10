@@ -119,7 +119,7 @@ namespace TollBooth
             const string states = "ALABAMA,ALASKA,ARIZONA,ARKANSAS,CALIFORNIA,COLORADO,CONNECTICUT,DELAWARE,FLORIDA,GEORGIA,HAWAII,IDAHO,ILLINOIS,INDIANA,IOWA,KANSAS,KENTUCKY,LOUISIANA,MAINE,MARYLAND,MASSACHUSETTS,MICHIGAN,MINNESOTA,MISSISSIPPI,MISSOURI,MONTANA,NEBRASKA,NEVADA,NEW HAMPSHIRE,NEW JERSEY,NEW MEXICO,NEW YORK,NORTH CAROLINA,NORTH DAKOTA,OHIO,OKLAHOMA,OREGON,PENNSYLVANIA,RHODE ISLAND,SOUTH CAROLINA,SOUTH DAKOTA,TENNESSEE,TEXAS,UTAH,VERMONT,VIRGINIA,WASHINGTON,WEST VIRGINIA,WISCONSIN,WYOMING";
             const string states_mx = "QUERETARO,QUERÉTARO,ESTADO DE MEXICO";
             const string other_date = "TRASERA,DELANTERA,MÉXICO,MEXICO,TRASNSPORTE,PRIVADO,PUBLICO,AUTOMOVIL,CAMION,15,22";
-            string[] chars = { ",", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "_", "(", ")", ":", "|", "[", "]" };
+            string[] chars = { ",", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "_", "(", ")", ":", "|", "[", "]","´" };
             var stateList = states.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             var states_mxList = states_mx.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             var other_dateList = other_date.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -127,7 +127,7 @@ namespace TollBooth
 
             // We are only interested in the first region found, and only the first two lines within the region.
             //changed to one line
-            foreach (var line in result.Regions[0].Lines.Take(2))
+            foreach (var line in result.Regions[0].Lines.Take(3))
             {
                 // Exclude the state name.
                 if (stateList.Contains(line.Words[0].Text.ToUpper())) continue;
@@ -141,8 +141,9 @@ namespace TollBooth
                 //if (other_dateList.Contains(line.Words[3].Text.ToUpper())) continue;
                 foreach (var word in line.Words)
                 {
-                    if (word.Text.Length < 7) continue;
+                    //if (word.Text.Length < 7) continue;
                     if (word.Text.Contains("-T")) continue;
+                    if (!word.Text.Contains("-")) continue;
                     if (!string.IsNullOrWhiteSpace(word.Text))
                         //text += (RemoveSpecialCharacters(word.Text)) + " "; // Spaces are valid in a license plate.
                         text += (RemoveSpecialCharacters(word.Text)) + " ";
