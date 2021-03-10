@@ -118,18 +118,21 @@ namespace TollBooth
 
             const string states = "ALABAMA,ALASKA,ARIZONA,ARKANSAS,CALIFORNIA,COLORADO,CONNECTICUT,DELAWARE,FLORIDA,GEORGIA,HAWAII,IDAHO,ILLINOIS,INDIANA,IOWA,KANSAS,KENTUCKY,LOUISIANA,MAINE,MARYLAND,MASSACHUSETTS,MICHIGAN,MINNESOTA,MISSISSIPPI,MISSOURI,MONTANA,NEBRASKA,NEVADA,NEW HAMPSHIRE,NEW JERSEY,NEW MEXICO,NEW YORK,NORTH CAROLINA,NORTH DAKOTA,OHIO,OKLAHOMA,OREGON,PENNSYLVANIA,RHODE ISLAND,SOUTH CAROLINA,SOUTH DAKOTA,TENNESSEE,TEXAS,UTAH,VERMONT,VIRGINIA,WASHINGTON,WEST VIRGINIA,WISCONSIN,WYOMING";
             const string states_mx = "QUERETARO,ESTADO DE MEXICO";
-            const string other_date = "TRASERA,DELANTERA,MÉXICO,TRASNSPORTE,PRIVADO,PUBLICO,AUTOMOVIL,CAMION";
+            const string other_date = "TRASERA,DELANTERA,MÉXICO,TRASNSPORTE,PRIVADO,PUBLICO,AUTOMOVIL,CAMION,15,22";
             string[] chars = { ",", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "_", "(", ")", ":", "|", "[", "]" };
             var stateList = states.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var states_mxList = states_mx.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var other_dateList = other_date.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
 
             // We are only interested in the first region found, and only the first two lines within the region.
             //changed to one line
-            foreach (var line in result.Regions[0].Lines.Take(1))
+            foreach (var line in result.Regions[0].Lines.Take(2))
             {
                 // Exclude the state name.
                 if (stateList.Contains(line.Words[0].Text.ToUpper())) continue;
-                if (states_mx.Contains(line.Words[0].Text.ToUpper())) continue;
-                if (other_date.Contains(line.Words[0].Text.ToUpper())) continue;
+                if (states_mxList.Contains(line.Words[0].Text.ToUpper())) continue;
+                if (other_dateList.Contains(line.Words[0].Text.ToUpper())) continue;
                 foreach (var word in line.Words)
                 {
                     if (!string.IsNullOrWhiteSpace(word.Text))
