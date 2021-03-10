@@ -35,7 +35,7 @@ namespace TollBooth
             var successful = false;
 
             _log.LogInformation("Generating CSV file");
-            string blobName = $"{DateTime.UtcNow:s}.csv";
+            string blobName = $"{DateTime.UtcNow:yyyyMMddHHmmss}.csv";
 
             using (var stream = new MemoryStream())
             {
