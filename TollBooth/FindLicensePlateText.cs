@@ -135,6 +135,7 @@ namespace TollBooth
                 if (other_dateList.Contains(line.Words[0].Text.ToUpper())) continue;
                 foreach (var word in line.Words)
                 {
+                    if (word.Text.Length < 5) continue;
                     if (!string.IsNullOrWhiteSpace(word.Text))
                         //text += (RemoveSpecialCharacters(word.Text)) + " "; // Spaces are valid in a license plate.
                         text += (RemoveSpecialCharacters(word.Text)); //delete spaces
