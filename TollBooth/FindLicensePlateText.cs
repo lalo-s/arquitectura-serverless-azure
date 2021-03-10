@@ -117,8 +117,8 @@ namespace TollBooth
             if (result.Regions == null || result.Regions.Length == 0) return string.Empty;
 
             const string states = "ALABAMA,ALASKA,ARIZONA,ARKANSAS,CALIFORNIA,COLORADO,CONNECTICUT,DELAWARE,FLORIDA,GEORGIA,HAWAII,IDAHO,ILLINOIS,INDIANA,IOWA,KANSAS,KENTUCKY,LOUISIANA,MAINE,MARYLAND,MASSACHUSETTS,MICHIGAN,MINNESOTA,MISSISSIPPI,MISSOURI,MONTANA,NEBRASKA,NEVADA,NEW HAMPSHIRE,NEW JERSEY,NEW MEXICO,NEW YORK,NORTH CAROLINA,NORTH DAKOTA,OHIO,OKLAHOMA,OREGON,PENNSYLVANIA,RHODE ISLAND,SOUTH CAROLINA,SOUTH DAKOTA,TENNESSEE,TEXAS,UTAH,VERMONT,VIRGINIA,WASHINGTON,WEST VIRGINIA,WISCONSIN,WYOMING";
-            const string states_mx = "QUERETARO,ESTADO DE MEXICO";
-            const string other_date = "TRASERA,DELANTERA,MÉXICO,TRASNSPORTE,PRIVADO,PUBLICO,AUTOMOVIL,CAMION,15,22";
+            const string states_mx = "QUERETARO,QUERÉTARO,ESTADO DE MEXICO";
+            const string other_date = "TRASERA,DELANTERA,MÉXICO,MEXICO,TRASNSPORTE,PRIVADO,PUBLICO,AUTOMOVIL,CAMION,15,22";
             string[] chars = { ",", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "_", "(", ")", ":", "|", "[", "]" };
             var stateList = states.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             var states_mxList = states_mx.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -136,6 +136,7 @@ namespace TollBooth
                 foreach (var word in line.Words)
                 {
                     if (word.Text.Length < 5) continue;
+                    if (word.Text.Contains("-T")) continue;
                     if (!string.IsNullOrWhiteSpace(word.Text))
                         //text += (RemoveSpecialCharacters(word.Text)) + " "; // Spaces are valid in a license plate.
                         text += (RemoveSpecialCharacters(word.Text)); //delete spaces
