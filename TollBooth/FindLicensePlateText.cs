@@ -127,7 +127,7 @@ namespace TollBooth
 
             // We are only interested in the first region found, and only the first two lines within the region.
             //changed to one line
-            foreach (var line in result.Regions[0].Lines.Take(4))
+            foreach (var line in result.Regions[0].Lines.Take(2))
             {
                 // Exclude the state name.
                 if (stateList.Contains(line.Words[0].Text.ToUpper())) continue;
@@ -135,10 +135,10 @@ namespace TollBooth
                 if (other_dateList.Contains(line.Words[0].Text.ToUpper())) continue;
                 if (states_mxList.Contains(line.Words[1].Text.ToUpper())) continue;
                 if (other_dateList.Contains(line.Words[1].Text.ToUpper())) continue;
-                if (states_mxList.Contains(line.Words[2].Text.ToUpper())) continue;
-                if (other_dateList.Contains(line.Words[2].Text.ToUpper())) continue;
-                if (states_mxList.Contains(line.Words[3].Text.ToUpper())) continue;
-                if (other_dateList.Contains(line.Words[3].Text.ToUpper())) continue;
+                //if (states_mxList.Contains(line.Words[2].Text.ToUpper())) continue;
+                //if (other_dateList.Contains(line.Words[2].Text.ToUpper())) continue;
+                //if (states_mxList.Contains(line.Words[3].Text.ToUpper())) continue;
+                //if (other_dateList.Contains(line.Words[3].Text.ToUpper())) continue;
                 foreach (var word in line.Words)
                 {
                     if (word.Text.Length < 7) continue;
