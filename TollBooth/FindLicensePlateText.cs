@@ -141,7 +141,7 @@ namespace TollBooth
                 //if (other_dateList.Contains(line.Words[3].Text.ToUpper())) continue;
                 foreach (var word in line.Words)
                 {
-                    //if (word.Text.Length < 7) continue;
+                    if ((word.Text).Length < 7) continue;
                     if (word.Text.Contains("-T")) continue;
                     if (!word.Text.Contains("-")) continue;
                     if (!string.IsNullOrWhiteSpace(word.Text))
