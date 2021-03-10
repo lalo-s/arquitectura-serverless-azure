@@ -133,8 +133,8 @@ namespace TollBooth
                 if (stateList.Contains(line.Words[0].Text.ToUpper())) continue;
                 if (states_mxList.Contains(line.Words[0].Text.ToUpper())) continue;
                 if (other_dateList.Contains(line.Words[0].Text.ToUpper())) continue;
-                if (states_mxList.Contains(line.Words[1].Text.ToUpper())) continue;
-                if (other_dateList.Contains(line.Words[1].Text.ToUpper())) continue;
+                //if (states_mxList.Contains(line.Words[1].Text.ToUpper())) continue;
+                //if (other_dateList.Contains(line.Words[1].Text.ToUpper())) continue;
                 //if (states_mxList.Contains(line.Words[2].Text.ToUpper())) continue;
                 //if (other_dateList.Contains(line.Words[2].Text.ToUpper())) continue;
                 //if (states_mxList.Contains(line.Words[3].Text.ToUpper())) continue;
